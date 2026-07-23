@@ -1,64 +1,7 @@
 /* =================================
    OTAKU WORLD - SCRIPT.JS
-   PART 1
+   VERSION 2.0
 ================================= */
-
-
-// ================================
-// SUCHFUNKTION
-// ================================
-
-
-const searchInput = document.getElementById("searchBar");
-
-
-if(searchInput){
-
-searchInput.addEventListener("keyup", function(){
-
-let searchValue = searchInput.value.toLowerCase();
-
-
-let animeCards = document.querySelectorAll(".anime-card");
-
-
-animeCards.forEach(card => {
-
-
-let title = card
-.querySelector("h3")
-.textContent
-.toLowerCase();
-
-
-
-if(title.includes(searchValue)){
-
-
-card.style.display="block";
-
-
-}
-
-else{
-
-
-card.style.display="none";
-
-
-}
-
-
-
-});
-
-
-});
-
-
-}
-
-
 
 
 
@@ -67,39 +10,32 @@ card.style.display="none";
 // ================================
 
 
-const scrollButton =
-document.getElementById("scrollTop");
+const scrollButton = document.getElementById("scrollTop");
 
 
-
-window.addEventListener("scroll",()=>{
-
-
-if(window.scrollY > 500){
+window.addEventListener("scroll", () => {
 
 
-scrollButton.style.display="block";
+    if(scrollButton){
 
+        if(window.scrollY > 500){
 
-}
+            scrollButton.style.display = "block";
 
-else{
+        }else{
 
+            scrollButton.style.display = "none";
 
-scrollButton.style.display="none";
+        }
 
-
-}
+    }
 
 
 });
 
 
 
-
-
 if(scrollButton){
-
 
 scrollButton.addEventListener("click",()=>{
 
@@ -123,119 +59,96 @@ behavior:"smooth"
 
 
 // ================================
-// BUTTON EFFEKT
+// ANIME SUCHFUNKTION
 // ================================
 
 
-const buttons =
-document.querySelectorAll("button");
+const searchInput =
+document.getElementById("animeSearch")
+||
+document.getElementById("searchBar");
 
 
 
-buttons.forEach(button=>{
+if(searchInput){
 
 
-button.addEventListener("click",()=>{
+searchInput.addEventListener("keyup",()=>{
 
 
-button.style.transform="scale(0.95)";
-
-
-setTimeout(()=>{
-
-
-button.style.transform="";
-
-
-},150);
+let search =
+searchInput.value.toLowerCase();
 
 
 
-});
-
-
-});/* =================================
-   LIKE / DISLIKE SYSTEM
-================================= */
-
-
-const likeButtons =
-document.querySelectorAll(".like-btn");
-
-
-likeButtons.forEach(button=>{
-
-
-button.addEventListener("click",()=>{
-
-
-let count =
-button.querySelector(".count");
+let cards =
+document.querySelectorAll(".anime-card");
 
 
 
-let number =
-parseInt(count.textContent);
+cards.forEach(card=>{
+
+
+let name =
+card.querySelector("h3")
+.textContent
+.toLowerCase();
 
 
 
-number++;
+if(name.includes(search)){
 
 
-count.textContent = number;
+card.style.display="block";
 
 
-
-button.classList.add("liked");
-
+}else{
 
 
-});
+card.style.display="none";
 
-
-});
-
-
-
-
-
-const dislikeButtons =
-document.querySelectorAll(".dislike-btn");
-
-
-
-dislikeButtons.forEach(button=>{
-
-
-button.addEventListener("click",()=>{
-
-
-let count =
-button.querySelector(".count");
-
-
-
-let number =
-parseInt(count.textContent);
-
-
-
-if(number > 0){
-
-number--;
 
 }
 
 
 
-count.textContent = number;
-
-
-
 });
 
 
 });
+
+
+}
+
+
+
+
+
+
+// ================================
+// ANIME INFO
+// ================================
+
+
+function showInfo(anime){
+
+
+alert(
+
+"🎬 " + anime +
+
+"\n\n⭐ Bewertung: Community Favorit" +
+
+"\n🔥 Rang: Wird bewertet" +
+
+"\n\nWeitere Informationen folgen!"
+
+);
+
+
+}
+
+
 
 
 
@@ -246,13 +159,114 @@ count.textContent = number;
 // ================================
 
 
-
-const favoriteButtons =
-document.querySelectorAll(".favorite");
+function addFavorite(anime){
 
 
+let favorites =
 
-favoriteButtons.forEach(button=>{
+JSON.parse(
+
+localStorage.getItem("favorites")
+
+)
+
+|| [];
+
+
+
+
+
+if(!favorites.includes(anime)){
+
+
+favorites.push(anime);
+
+
+
+localStorage.setItem(
+
+"favorites",
+
+JSON.stringify(favorites)
+
+);
+
+
+
+notification(
+
+"❤️ " + anime + " gespeichert!"
+
+);
+
+
+
+}else{
+
+
+notification(
+
+"⭐ " + anime + " ist bereits gespeichert!"
+
+);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+// ================================
+// LIKE SYSTEM
+// ================================
+
+
+function likePost(button){
+
+
+let span =
+button.querySelector("span");
+
+
+
+if(span){
+
+
+let number =
+parseInt(span.innerText);
+
+
+
+number++;
+
+
+span.innerText = number;
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+// ================================
+// FAVORIT BUTTON DESIGN
+// ================================
+
+
+document.querySelectorAll(".favorite")
+.forEach(button=>{
 
 
 button.addEventListener("click",()=>{
@@ -265,16 +279,15 @@ button.classList.toggle("active");
 if(button.classList.contains("active")){
 
 
-button.textContent="❤️ Favorit";
+button.innerHTML =
+"❤️ Favorit";
 
 
-}
+}else{
 
 
-else{
-
-
-button.textContent="🤍 Favorit";
+button.innerHTML =
+"🤍 Favorit";
 
 
 }
@@ -287,257 +300,6 @@ button.textContent="🤍 Favorit";
 });
 
 
-
-
-
-
-// ================================
-// ANIMATION BEIM SCROLLEN
-// ================================
-
-
-
-const observer =
-new IntersectionObserver(entries=>{
-
-
-entries.forEach(entry=>{
-
-
-if(entry.isIntersecting){
-
-
-entry.target.classList.add("show");
-
-
-}
-
-
-});
-
-
-},{
-
-threshold:0.15
-
-});
-
-
-
-
-
-const animatedElements =
-document.querySelectorAll(
-".anime-card, .ranking-card, .news-card, .category"
-);
-
-
-
-animatedElements.forEach(element=>{
-
-
-observer.observe(element);
-
-
-});
-
-
-
-
-
-
-// ================================
-// PROFIL SYSTEM VORBEREITUNG
-// ================================
-
-
-
-let user = {
-
-
-name:"Gast Otaku",
-
-level:1,
-
-favorites:0,
-
-reviews:0
-
-
-};
-
-
-
-function showProfile(){
-
-
-console.log(
-"Willkommen " + user.name
-);
-
-
-console.log(
-"Level: " + user.level
-);
-
-
-}
-
-
-
-
-showProfile();/* =================================
-   ANIME DATEN SYSTEM
-================================= */
-
-
-const animeData = [
-
-{
-name:"Solo Leveling",
-genre:"Action Fantasy",
-rating:9.4
-},
-
-{
-name:"One Piece",
-genre:"Abenteuer Fantasy",
-rating:9.3
-},
-
-{
-name:"Attack on Titan",
-genre:"Action Drama",
-rating:9.2
-},
-
-{
-name:"Demon Slayer",
-genre:"Action Fantasy",
-rating:9.1
-},
-
-{
-name:"Jujutsu Kaisen",
-genre:"Action Übernatürlich",
-rating:9.0
-}
-
-
-];
-
-
-
-
-
-// ================================
-// ANIME SUCHERWEITERUNG
-// ================================
-
-
-
-function searchAnime(value){
-
-
-let result = animeData.filter(anime =>
-
-
-anime.name
-.toLowerCase()
-.includes(value.toLowerCase())
-
-);
-
-
-
-return result;
-
-
-}
-
-
-
-
-
-// ================================
-// KOMMENTAR SYSTEM VORBEREITUNG
-// ================================
-
-
-
-let comments = [];
-
-
-
-function addComment(username,text){
-
-
-let newComment = {
-
-
-user:username,
-
-message:text,
-
-date:new Date()
-
-
-};
-
-
-
-comments.push(newComment);
-
-
-
-console.log(
-"Neuer Kommentar:",
-newComment
-
-);
-
-
-}
-
-
-
-
-
-// Beispiel
-
-addComment(
-"Gast Otaku",
-"Dieser Anime ist unglaublich!"
-);
-
-
-
-
-
-
-
-// ================================
-// BEWERTUNGS SYSTEM
-// ================================
-
-
-
-function rateAnime(anime,rating){
-
-
-console.log(
-
-anime +
-" wurde mit "
-+
-rating
-+
-" Sternen bewertet"
-
-);
-
-
-}
 
 
 
@@ -548,18 +310,21 @@ rating
 // ================================
 
 
+function notification(text){
 
-function notification(message){
 
 
 let box =
 document.createElement("div");
 
 
-box.className="notification";
+
+box.className =
+"notification";
 
 
-box.textContent=message;
+
+box.innerHTML=text;
 
 
 
@@ -584,102 +349,64 @@ box.remove();
 
 
 
-// Test Nachricht
-
-setTimeout(()=>{
-
-
-notification(
-"🔥 Willkommen bei Otaku World!"
-);
-
-
-},2000);
-
-
-
-
 
 
 
 // ================================
-// DARK MODE VORBEREITUNG
+// KOMMENTARE VORBEREITUNG
 // ================================
 
 
+let comments =
 
-const modeButton =
-document.querySelector(".mode-button");
+JSON.parse(
 
+localStorage.getItem("comments")
 
+)
 
-if(modeButton){
-
-
-modeButton.addEventListener("click",()=>{
-
-
-document.body.classList.toggle(
-"light-mode"
-);
-
-
-});
-
-
-}/* =================================
-   LOCAL STORAGE SYSTEM
-================================= */
-
-
-// Favoriten speichern
-
-
-let favorites = 
-JSON.parse(localStorage.getItem("favorites"))
 || [];
 
 
 
-function saveFavorites(){
+
+
+function addComment(user,text){
+
+
+let comment={
+
+
+user:user,
+
+message:text,
+
+date:new Date().toLocaleDateString()
+
+
+};
+
+
+
+comments.push(comment);
+
 
 
 localStorage.setItem(
 
-"favorites",
+"comments",
 
-JSON.stringify(favorites)
+JSON.stringify(comments)
 
 );
-
-
-}
-
-
-
-
-
-function addFavorite(anime){
-
-
-if(!favorites.includes(anime)){
-
-
-favorites.push(anime);
-
-
-saveFavorites();
 
 
 
 notification(
-anime + " wurde gespeichert ❤️"
+"💬 Kommentar hinzugefügt!"
 );
 
 
-}
-
-
 
 }
 
@@ -690,17 +417,44 @@ anime + " wurde gespeichert ❤️"
 
 
 // ================================
-// PROFIL SPEICHERN
+// PROFIL SYSTEM
 // ================================
 
 
 
-function saveUser(){
+let user =
+
+JSON.parse(
+
+localStorage.getItem("user")
+
+)
+
+|| {
+
+
+name:"Gast Otaku",
+
+level:1,
+
+favorites:0,
+
+comments:0
+
+
+};
+
+
+
+
+
+
+function saveProfile(){
 
 
 localStorage.setItem(
 
-"otakuUser",
+"user",
 
 JSON.stringify(user)
 
@@ -712,152 +466,14 @@ JSON.stringify(user)
 
 
 
-function loadUser(){
-
-
-let savedUser =
-localStorage.getItem("otakuUser");
-
-
-
-if(savedUser){
-
-
-user =
-JSON.parse(savedUser);
-
-
-
-}
-
-
-
-}
-
-
-
-loadUser();
-
-
-
-
-
 
 
 // ================================
-// ANIME CARD INTERAKTION
+// START
 // ================================
 
 
-
-const cards =
-document.querySelectorAll(".anime-card");
-
-
-
-cards.forEach(card=>{
-
-
-card.addEventListener("mouseenter",()=>{
-
-
-card.style.cursor="pointer";
-
-
-});
-
-
-
-card.addEventListener("click",()=>{
-
-
-let animeName =
-card.querySelector("h3").textContent;
-
-
-
-notification(
-
-"Du schaust: "
-+
-animeName
-
-);
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-// ================================
-// LADE EFFEKT
-// ================================
-
-
-
-window.addEventListener(
-"load",
-()=>{
-
-
-document.body.classList.add(
-"loaded"
-);
-
-
-});
-
-
-
-
-
-
-
-// ================================
-// TASTATUR SHORTCUT
-// ================================
-
-
-
-document.addEventListener(
-"keydown",
-(event)=>{
-
-
-// STRG + K öffnet Suche
-
-
-if(event.ctrlKey && event.key==="k"){
-
-
-event.preventDefault();
-
-
-searchInput.focus();
-
-
-}
-
-
-
-});
-
-
-
-
-
-
-// ================================
-// START MELDUNG
-// ================================
-
+window.addEventListener("load",()=>{
 
 
 console.log(
@@ -866,8 +482,6 @@ console.log(
 
 );
 
-console.log(
 
-"🔥 Anime Community bereit!"
 
-);
+});

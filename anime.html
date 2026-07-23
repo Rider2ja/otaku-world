@@ -1,7 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Otaku World | Anime</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="background"></div>
+
+
+
+<!-- HEADER -->
+
+<header>
+
+
+<div class="logo">
+
+🌌 <span>OTAKU</span> WORLD
+
+</div>
+
+
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+
+<a href="anime.html">
+Anime
+</a>
+
+
+<a href="ranking.html">
+Ranking
+</a>
+
+
+<a href="community.html">
+Community
+</a>
+
+
+<a href="profil.html">
+Profil
+</a>
+
+
+</nav>
+
+
+
+
+<div class="search">
+
+
+<input 
+id="animeSearch"
+placeholder="Anime suchen..."
+>
+
+
+<button>
+🔍
+</button>
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+
+<!-- HEADER BEREICH -->
+
+
+<section class="anime-header">
+
+
+<h1>
+
+🎬 Anime Bibliothek
+
+</h1>
+
+
+<p>
+
+Finde deine nächsten Lieblingsanime.
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+<!-- KATEGORIEN -->
+
+
+<section class="anime-categories">
+
+
+<h2>
+
+🎭 Kategorien
+
+</h2>
+
+
+
+<div class="category-grid">
+
+
+<a href="#" class="category">
+
+⚔️ Action
+
+</a>
+
+
+<a href="#" class="category">
+
+🌌 Fantasy
+
+</a>
+
+
+<a href="#" class="category">
+
+❤️ Romance
+
+</a>
+
+
+<a href="#" class="category">
+
+🚀 Isekai
+
+</a>
+
+
+
+</div>
+
+
+</section><!-- ANIME LISTE -->
+
+
+<section class="anime-library">
+
+
+<h2>
+
+🔥 Beliebte Anime
+
+</h2>
+
+
+
+<div class="anime-grid">
+
+
+
+
+
+<!-- SOLO LEVELING -->
+
+
+<div class="anime-card">
+
+
+<img src="images/solo-leveling.jpg" alt="Solo Leveling">
+
+
+
+<div class="anime-content">
+
+
+<h3>
+Solo Leveling
+</h3>
+
+
+<p>
+Action • Fantasy • Abenteuer
+</p>
+
+
+
+
+<div class="anime-info">
 
 
 <span>
-🔥 S-Rang
+⭐ 9.4
+</span>
+
+
+<span>
+👑 S-Rang
 </span>
 
 
@@ -9,50 +233,129 @@
 
 
 
+
+
 <div class="buttons">
 
 
-<button class="favorite">
-
-🤍 Favorit
-
-</button>
-
-
-<button>
+<button onclick="showInfo('Solo Leveling')">
 
 💬 Info
 
 </button>
 
 
+
+<button onclick="addFavorite('Solo Leveling')" class="favorite">
+
+🤍 Favorit
+
+</button>
+
+
+
+</div>
+
+
+
 </div>
 
 
 </div>
 
 
-</div>
 
 
 
 
 
 
-
-<!-- Anime 3 -->
+<!-- ONE PIECE -->
 
 
 <div class="anime-card">
 
 
-<div class="anime-cover">
+<img src="images/one-piece.jpg" alt="One Piece">
 
 
-<img src="images/demon-slayer.jpg" alt="Demon Slayer">
+
+<div class="anime-content">
+
+
+<h3>
+One Piece
+</h3>
+
+
+<p>
+Abenteuer • Action • Fantasy
+</p>
+
+
+
+
+<div class="anime-info">
+
+
+<span>
+⭐ 9.3
+</span>
+
+
+<span>
+👑 S-Rang
+</span>
 
 
 </div>
+
+
+
+
+
+<div class="buttons">
+
+
+<button onclick="showInfo('One Piece')">
+
+💬 Info
+
+</button>
+
+
+
+<button onclick="addFavorite('One Piece')" class="favorite">
+
+🤍 Favorit
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- DEMON SLAYER -->
+
+
+<div class="anime-card">
+
+
+<img src="images/demon-slayer.jpg" alt="Demon Slayer">
 
 
 
@@ -67,6 +370,7 @@ Demon Slayer
 <p>
 Action • Fantasy • Dämonen
 </p>
+
 
 
 
@@ -87,50 +391,48 @@ Action • Fantasy • Dämonen
 
 
 
+
+
 <div class="buttons">
 
 
-<button class="favorite">
-
-🤍 Favorit
-
-</button>
-
-
-<button>
+<button onclick="showInfo('Demon Slayer')">
 
 💬 Info
 
 </button>
 
 
+
+<button onclick="addFavorite('Demon Slayer')" class="favorite">
+
+🤍 Favorit
+
+</button>
+
+
+
+</div>
+
+
+
 </div>
 
 
 </div>
 
 
-</div>
 
 
 
 
-
-
-
-<!-- Anime 4 -->
+<!-- JUJUTSU KAISEN -->
 
 
 <div class="anime-card">
 
 
-<div class="anime-cover">
-
-
 <img src="images/jujutsu-kaisen.jpg" alt="Jujutsu Kaisen">
-
-
-</div>
 
 
 
@@ -148,6 +450,7 @@ Action • Übernatürlich
 
 
 
+
 <div class="anime-info">
 
 
@@ -157,7 +460,7 @@ Action • Übernatürlich
 
 
 <span>
-🔥 S-Rang
+🔥 A-Rang
 </span>
 
 
@@ -165,54 +468,65 @@ Action • Übernatürlich
 
 
 
+
+
 <div class="buttons">
 
 
-<button class="favorite">
-
-🤍 Favorit
-
-</button>
-
-
-<button>
+<button onclick="showInfo('Jujutsu Kaisen')">
 
 💬 Info
 
 </button>
 
 
-</div>
 
+<button onclick="addFavorite('Jujutsu Kaisen')" class="favorite">
 
-</div>
+🤍 Favorit
 
-
-</div>
-
+</button>
 
 
 
 </div>
 
 
-</section><!-- Weitere Anime -->
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</section><!-- WEITERE ANIME -->
+
 
 <section class="anime-library">
+
+
+<h2>
+
+⭐ Weitere Empfehlungen
+
+</h2>
+
 
 
 <div class="anime-grid">
 
 
 
+
+
 <div class="anime-card">
 
 
-<div class="anime-cover">
-
 <img src="images/attack-on-titan.jpg" alt="Attack on Titan">
-
-</div>
 
 
 <div class="anime-content">
@@ -228,6 +542,7 @@ Action • Drama • Fantasy
 </p>
 
 
+
 <div class="anime-info">
 
 
@@ -237,34 +552,43 @@ Action • Drama • Fantasy
 
 
 <span>
-🔥 S-Rang
+👑 S-Rang
 </span>
 
 
 </div>
 
 
+
+
 <div class="buttons">
 
-<button class="favorite">
+
+<button onclick="showInfo('Attack on Titan')">
+
+💬 Info
+
+</button>
+
+
+
+<button onclick="addFavorite('Attack on Titan')" class="favorite">
 
 🤍 Favorit
 
 </button>
 
 
-<button>
+</div>
 
-💬 Info
 
-</button>
 
 </div>
 
 
 </div>
 
-</div>
+
 
 
 
@@ -274,11 +598,7 @@ Action • Drama • Fantasy
 <div class="anime-card">
 
 
-<div class="anime-cover">
-
 <img src="images/arifureta.jpg" alt="Arifureta">
-
-</div>
 
 
 <div class="anime-content">
@@ -294,6 +614,7 @@ Isekai • Action • Fantasy
 </p>
 
 
+
 <div class="anime-info">
 
 
@@ -303,34 +624,44 @@ Isekai • Action • Fantasy
 
 
 <span>
-A-Rang
+🔥 A-Rang
 </span>
 
 
 </div>
 
 
+
+
 <div class="buttons">
 
-<button class="favorite">
+
+<button onclick="showInfo('Arifureta')">
+
+💬 Info
+
+</button>
+
+
+
+<button onclick="addFavorite('Arifureta')" class="favorite">
 
 🤍 Favorit
 
 </button>
 
 
-<button>
+</div>
 
-💬 Info
 
-</button>
 
 </div>
 
 
 </div>
 
-</div>
+
+
 
 
 
@@ -339,11 +670,7 @@ A-Rang
 <div class="anime-card">
 
 
-<div class="anime-cover">
-
 <img src="images/chainsaw-man.jpg" alt="Chainsaw Man">
-
-</div>
 
 
 <div class="anime-content">
@@ -357,6 +684,7 @@ Chainsaw Man
 <p>
 Action • Horror • Fantasy
 </p>
+
 
 
 <div class="anime-info">
@@ -375,25 +703,32 @@ A-Rang
 </div>
 
 
+
+
 <div class="buttons">
 
-<button class="favorite">
+
+<button onclick="showInfo('Chainsaw Man')">
+
+💬 Info
+
+</button>
+
+
+
+<button onclick="addFavorite('Chainsaw Man')" class="favorite">
 
 🤍 Favorit
 
 </button>
 
 
-<button>
-
-💬 Info
-
-</button>
-
 </div>
 
 
+
 </div>
+
 
 </div>
 
@@ -409,7 +744,9 @@ A-Rang
 
 
 
-<!-- Footer -->
+
+
+<!-- FOOTER -->
 
 
 <footer>
@@ -422,17 +759,24 @@ A-Rang
 
 
 <h2>
+
 🌌 OTAKU WORLD
+
 </h2>
 
 
+
 <p>
-Deine Anime-Community für Bewertungen,
-Diskussionen und Empfehlungen.
+
+Anime entdecken,
+bewerten und mit anderen teilen.
+
 </p>
 
 
 </div>
+
+
 
 
 
@@ -442,6 +786,7 @@ Diskussionen und Empfehlungen.
 <h3>
 Seiten
 </h3>
+
 
 
 <a href="index.html">
@@ -467,8 +812,8 @@ Profil
 </div>
 
 
-
 </div>
+
 
 
 
@@ -476,7 +821,9 @@ Profil
 
 
 <p>
+
 © 2026 Otaku World
+
 </p>
 
 
@@ -488,11 +835,16 @@ Profil
 
 
 
+
+
+
 <button id="scrollTop">
 
 ⬆️
 
 </button>
+
+
 
 
 
